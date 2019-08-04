@@ -1,14 +1,15 @@
-# Fail2Ban-PoSh
+# 
 PowerShell version of Fail2Ban
 
 
-Invoke-WebRequest https://github.com/WiredPulse/Invoke-Fail2Ban/archive/master.zip -OutFile c:\invoke-fail2ban.zip
+# Usage <br>
+1. Download repo and unzip repo
+2. Edit script with your favorite text editor and adjust configs just after initial comment, as desired
+3. Save script and execute it
+4. Follow the options
 
-Expand-Archive c:\Invoke-Fail2Ban-master.zip
-
-cd 
-
-
+# Screenshots <br>
+<br>
 Running the script<br>
 ![Alt text](https://github.com/WiredPulse/Invoke-Fail2Ban/blob/master/Images/1-Menu.png?raw=true "Optional Title")<br>
 <br>
