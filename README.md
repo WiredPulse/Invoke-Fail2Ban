@@ -1,5 +1,5 @@
 # PowerShell version of Fail2Ban
-This script monitors a Windows system for attempted brute force authentications. After the defined number of failures have occured, the script will create a firewall rule to block the IP for a defined period of time. Additionally, when an IP is banned, the event is written to the system's event log under and stored in a queryable SQL DB. 
+This script monitors a Windows system for attempted brute force authentications. After the defined number of failures have occured, the script will create a firewall rule to block the IP for a defined period of time. Additionally, when an IP is banned, the event is written to the system's event log under and stored in a queryable SQL DB. The IP(s) of the system that is running the script are automatically whitelisted with the ability to add additional IPs to the whitelist.
 <br>
 <br>
 
