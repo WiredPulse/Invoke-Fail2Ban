@@ -1,13 +1,6 @@
 # 
 PowerShell version of Fail2Ban
 
-
-# Usage <br>
-1. Download repo and unzip repo
-2. Edit script with your favorite text editor and adjust configs just after initial comment, as desired
-3. Save script and execute it
-4. Follow the options
-
 # Screenshots <br>
 <br>
 Running the script<br>
