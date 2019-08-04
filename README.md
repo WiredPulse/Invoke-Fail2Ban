@@ -1,5 +1,5 @@
 # PowerShell version of Fail2Ban
-dfdfdfd
+
 <br>
 <br>
 
@@ -8,7 +8,6 @@ dfdfdfd
 2. Edit script with your favorite text editor and adjust configs just after initial comment, as desired
 3. Save scrip  and execute it
 4. Follow the options
-<br>
 <br>
 
 # Configurable options <br>
