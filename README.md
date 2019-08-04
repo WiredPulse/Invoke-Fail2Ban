@@ -10,6 +10,6 @@ cd
 
 
 Running the script<br>
-![Alt text](https://github.com/WiredPulse/PoSh-R2/blob/master/Screenshots/1-Script_Execution.png?raw=true "Optional Title"){:height="24px" width="48px"}<br>
+![Alt text](https://github.com/WiredPulse/Invoke-Fail2Ban/blob/master/Images/1-Menu.png?raw=true "Optional Title"){:height="24px" width="48px"}<br>
 <br>
 
