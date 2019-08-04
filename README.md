@@ -7,3 +7,8 @@ Invoke-WebRequest https://github.com/WiredPulse/Invoke-Fail2Ban/archive/master.z
 Expand-Archive c:\Invoke-Fail2Ban-master.zip
 
 cd 
+
+
+Running the script<br>
+![Alt text](https://github.com/WiredPulse/PoSh-R2/blob/master/Screenshots/1-Script_Execution.png?raw=true "Optional Title")<br>
+<br>
