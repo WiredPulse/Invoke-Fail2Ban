@@ -7,7 +7,7 @@ This script monitors a Windows system for attempted brute force authentications.
 1. Download repo and unzip repo
 2. Edit script with your favorite text editor and adjust configs just after initial comment, as desired
 3. Save scrip  and execute it
-4. Follow the options
+4. Follow the options (see screenshots below)
 <br>
 
 # Configurable options <br>
