@@ -11,12 +11,12 @@
 <br>
 
 # Configurable options <br>
-* Configurable threshold of failed login attempts and how long an IP should be blocked
-IP whitelisting
-Logging blocked IPs to Windows event log with customizable event source and ID
-Logging blocked and whitelisted IPs to a queryable SQL database
-Customizable ban timeout
-Option for mass and quick removal of all banned IPs
+* Configurable threshold of failed login attempts and how long an IP should be blocked<br>
+* IP whitelisting<br>
+* Logging blocked IPs to Windows event log with customizable event source and ID<br>
+* Logging blocked and whitelisted IPs to a queryable SQL database<br>
+* Customizable ban timeout<br>
+* Option for mass and quick removal of all banned IPs<br>
 <br>
 <br>
 
