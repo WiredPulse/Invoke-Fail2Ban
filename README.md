@@ -11,7 +11,7 @@
 <br>
 
 # Configurable options <br>
-Configurable threshold of failed login attempts and how long an IP should be blocked
+* Configurable threshold of failed login attempts and how long an IP should be blocked
 IP whitelisting
 Logging blocked IPs to Windows event log with customizable event source and ID
 Logging blocked and whitelisted IPs to a queryable SQL database
