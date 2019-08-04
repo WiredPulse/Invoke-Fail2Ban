@@ -27,7 +27,7 @@ Running the script<br>
 ![Alt text](https://github.com/WiredPulse/Invoke-Fail2Ban/blob/master/Images/1-Menu.png?raw=true "Optional Title")<br>
 <br>
 
-Configuring the Whitelist<br>
+Configuring the Whitelist (single IP or CIDR blocks)<br>
 ![Alt text](https://github.com/WiredPulse/Invoke-Fail2Ban/blob/master/Images/2-Configure_whitelist.png?raw=true "Optional Title")<br>
 <br>
 
