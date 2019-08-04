@@ -21,7 +21,7 @@ Option for mass and quick removal of all banned IPs
 # Screenshots <br>
 <br>
 Running the script<br>
-![Alt text]()<br>
+![Alt text](https://github.com/WiredPulse/Invoke-Fail2Ban/blob/master/Images/1-Menu.png?raw=true "Optional Title")<br>
 <br>
 
 Configuring the Whitelist<br>
