@@ -2,6 +2,7 @@
 dfdfdfd
 <br>
 <br>
+
 # Usage <br>
 1. Download repo and unzip repo
 2. Edit script with your favorite text editor and adjust configs just after initial comment, as desired
@@ -9,6 +10,7 @@ dfdfdfd
 4. Follow the options
 <br>
 <br>
+
 # Configurable options <br>
 Configurable threshold of failed login attempts and how long an IP should be blocked
 IP whitelisting
@@ -18,7 +20,8 @@ Customizable ban timeout
 Option for mass and quick removal of all banned IPs
 <br>
 <br>
-Screenshots <br>
+
+# Screenshots <br>
 <br>
 
 Running the script<br>
