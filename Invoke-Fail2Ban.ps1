@@ -17,9 +17,8 @@ Import-Module "$PSScriptRoot\PSSQLite\PSSQLite.psd1"
 # =+=+=+=+=+=+=+=+=+=+=+=+=
 # configs
     $fails = 3    # Number of fails before being banned
-    $cycleDuration = 30     # Number of minutes between each failure check
-    $endTime = (get-date).AddSeconds(-30)     # Number of days to check logs for
-    $startTime= get-date
+    $cycleDuration = 15     # Number of minutes between each failure check
+    $startTime = 30     # Number of days to check logs for
     $banLength = 20     # Number of days to ban IPs for
     $eventSource = "Invoke-PSFail2Ban"     # Event source name within the Application log to log in Event Logs upon a ban being implemented
     $EventID = 1337     # Event log ID within the Application log to events under
@@ -442,8 +441,9 @@ $WlCurrent = (Invoke-SqliteQuery -DataSource $whitelistdb -Query "SELECT * FROM 
 
 while($true)
 {
+    $start = (get-date).AddSeconds(-$startTime)
     try{
-    $events = Get-WinEvent -FilterHashtable @{logname='security';id='4625';starttime=$endTime;endtime=$startTime} -ErrorAction stop | Select-Object @{label="IP";expression={$_.properties.value[19]}}
+    $events = Get-WinEvent -FilterHashtable @{logname='security';id='4625';starttime=$start;endtime=$(get-date)} -ErrorAction stop | Select-Object @{label="IP";expression={$_.properties.value[19]}}
     }catch{ }
     $count =  $events | Group-Object -Property IP
     $ip = $count | Select-Object count, name | Sort-Object count | Where-Object{$_.count -ge $fails -and $_.name -ne '-'}
