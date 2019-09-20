@@ -429,8 +429,8 @@ Write-Host -ForegroundColor Cyan "Whitelisted IPs:"
 Invoke-SqliteQuery -DataSource $whitelistDB -Query "SELECT * FROM whitelist" -As PSObject| out-host
 pause
 
-Write-Host -ForegroundColor Green "$((get-date).ToUniversalTime().tostring("dd-MMM-yy HH:mm:ss")) -- Invoke-Fail2Ban is monitoring"
 Write-Host " "
+Write-Host -ForegroundColor Green "$((get-date).ToUniversalTime().tostring("dd-MMM-yy HH:mm:ss")) -- Invoke-Fail2Ban is monitoring"
 
 New-EventLog -LogName application -Source $eventSource -ErrorAction SilentlyContinue
     if($? -eq $true){
@@ -444,7 +444,7 @@ while($true)
     $start = (get-date).AddSeconds(-$startTime)
     try{
     $events = Get-WinEvent -FilterHashtable @{logname='security';id='4625';starttime=$start;endtime=$(get-date)} -ErrorAction stop | Select-Object @{label="IP";expression={$_.properties.value[19]}}
-    }catch{ }
+    }catch{ Remove-Variable events -ErrorAction SilentlyContinue}
     $count =  $events | Group-Object -Property IP
     $ip = $count | Select-Object count, name | Sort-Object count | Where-Object{$_.count -ge $fails -and $_.name -ne '-'}
         foreach($sys in $ip.name){
@@ -455,7 +455,7 @@ while($true)
                     Get-NetFirewallRule -DisplayName "$ruleName" -ErrorAction stop| out-null
                 }
                 catch{
-                    New-NetFirewallRule -displayname "$ruleName" -direction "in" -Action "block" -Protocol "tcp" -RemoteAddress "$sys" -ErrorAction SilentlyContinue | out-null
+                    New-NetFirewallRule -displayname "$ruleName" -direction "in" -Action "block" -Protocol "any" -RemoteAddress "$sys" -ErrorAction SilentlyContinue | out-null
                         if(Get-NetFirewallRule -DisplayName "$ruleName"){
                             $banExpiration = (Get-Date).AddSeconds($banLength)
                             write-host -ForegroundColor cyan "$((get-date).ToUniversalTime().tostring("dd-MMM-yy HH:mm:ss")) -- Ban_$sys FW rule successfully added!"
