@@ -16,11 +16,11 @@ Import-Module "$PSScriptRoot\PSSQLite\PSSQLite.psd1"
 
 # =+=+=+=+=+=+=+=+=+=+=+=+=
 # configs
-    $fails = 4     # Number of fails before being banned
+    $fails = 3    # Number of fails before being banned
     $cycleDuration = 30     # Number of minutes between each failure check
-    $endTime = (get-date).adddays(-1)     # Number of days to check logs for
+    $endTime = (get-date).AddSeconds(-30)     # Number of days to check logs for
     $startTime= get-date
-    $banLength = 7     # Number of days to ban IPs for
+    $banLength = 20     # Number of days to ban IPs for
     $eventSource = "Invoke-PSFail2Ban"     # Event source name within the Application log to log in Event Logs upon a ban being implemented
     $EventID = 1337     # Event log ID within the Application log to events under
     $script:whitelistDB = "$PSScriptRoot" + "\whitelist.SQLite"
@@ -435,14 +435,16 @@ Write-Host " "
 
 New-EventLog -LogName application -Source $eventSource -ErrorAction SilentlyContinue
     if($? -eq $true){
-        New-EventLog -LogName application -Source $eventSource
+        New-EventLog -LogName application -Source $eventSource -ErrorAction SilentlyContinue
     }
 
 $WlCurrent = (Invoke-SqliteQuery -DataSource $whitelistdb -Query "SELECT * FROM whitelist" -As PSObject).ip
 
 while($true)
 {
-    $events = Get-WinEvent -FilterHashtable @{logname='security';id='4625';starttime=$endTime;endtime=$startTime} | Select-Object @{label="IP";expression={$_.properties.value[19]}} 
+    try{
+    $events = Get-WinEvent -FilterHashtable @{logname='security';id='4625';starttime=$endTime;endtime=$startTime} -ErrorAction stop | Select-Object @{label="IP";expression={$_.properties.value[19]}}
+    }catch{ }
     $count =  $events | Group-Object -Property IP
     $ip = $count | Select-Object count, name | Sort-Object count | Where-Object{$_.count -ge $fails -and $_.name -ne '-'}
         foreach($sys in $ip.name){
@@ -455,7 +457,7 @@ while($true)
                 catch{
                     New-NetFirewallRule -displayname "$ruleName" -direction "in" -Action "block" -Protocol "tcp" -RemoteAddress "$sys" -ErrorAction SilentlyContinue | out-null
                         if(Get-NetFirewallRule -DisplayName "$ruleName"){
-                            $banExpiration = (Get-Date).AddDays($banLength)
+                            $banExpiration = (Get-Date).AddSeconds($banLength)
                             write-host -ForegroundColor cyan "$((get-date).ToUniversalTime().tostring("dd-MMM-yy HH:mm:ss")) -- Ban_$sys FW rule successfully added!"
                             Write-EventLog -LogName application -Source $eventSource -EntryType Warning -EventId $EventID -Message "Blocked IP: $sys`nBlock Expiration: $banExpiration`nFW Rule: $rulename"
                         }
@@ -493,6 +495,6 @@ while($true)
                 }
             }
         } 
-    Start-Sleep -Seconds ($cycleDuration * 60)
+    Start-Sleep -Seconds $cycleDuration
     write-host -ForegroundColor Green "$((get-date).ToUniversalTime().tostring("dd-MMM-yy HH:mm:ss")) -- Invoke-Fail2Ban is monitoring"
 }
