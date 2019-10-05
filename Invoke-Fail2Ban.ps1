@@ -1,6 +1,6 @@
 ﻿<#
 .SYNOPSIS  
-    Invoke-Faile2Ban is port of the *nix version of the original Fail2ban program. This script will monitor for a certain number of failed attempts and block to IP for a designated
+    Invoke-Fail2Ban is port of the *nix version of the original Fail2ban program. This script will monitor for a certain number of failed attempts and block to IP for a designated
     period of time. The blocked IPs are written to the Application log using a user-defined event source and ID. Additionally, those IPs are also stored in a queryable SQL db. The
     script will also whitelist the ip(s) of the system that is running the script and allows for other IPs to be whitelisted as well.
 
