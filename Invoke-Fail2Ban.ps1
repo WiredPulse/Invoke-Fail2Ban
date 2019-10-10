@@ -11,6 +11,7 @@
     PSSQLITE -> https://github.com/RamblingCookieMonster/PSSQLite
     Fail2ban -> https://www.fail2ban.org/wiki/index.php/Main_Page
 #>
+Clear-Host
 
 Import-Module "$PSScriptRoot\PSSQLite\PSSQLite.psd1"
 
